@@ -1,0 +1,9 @@
+﻿<div>
+    <div (click)="(toggle)">
+        <h3>{{title}}</h3>
+    </div>
+    <div [hidden]="!visible">
+        <h4>{{visible ? 'Hello Bhiya':''}}</h4>
+        <content></content>
+    </div>
+</div>
