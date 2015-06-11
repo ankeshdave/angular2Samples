@@ -23,6 +23,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="app\components\tabs\tab.html" />
+    <Content Include="app\components\tabs\tabs.html" />
     <Content Include="app\components\Zippy\zippy.html" />
     <Content Include="index.html" />
     <Content Include="app\my-app.html" />
@@ -30,6 +32,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\components\tabs\tab.ts" />
+    <TypeScriptCompile Include="app\components\tabs\tabs.ts" />
     <TypeScriptCompile Include="app\components\Zippy\zippy.ts" />
     <TypeScriptCompile Include="typings\angular2\angular2.d.ts" />
     <TypeScriptCompile Include="typings\es6-promise\es6-promise.d.ts" />
