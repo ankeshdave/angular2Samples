@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "Angular2WithTS"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-Angular2WithTS-19ac7c2a-fd14-45be-973b-819e9a702320;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}

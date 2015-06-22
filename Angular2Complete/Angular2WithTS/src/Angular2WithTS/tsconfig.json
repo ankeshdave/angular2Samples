@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es6"
+  }
+}

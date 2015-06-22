@@ -1,8 +1,7 @@
 ﻿import {Component, View} from  "angular2/angular2"
 
 @Component({
-    selector: "tab",
-    properties:["tab-title"]
+    selector: "tab"
 })
 
 @View({
@@ -10,5 +9,5 @@
 })
 
 export class Tab {
-    
+    title: String;
 }
