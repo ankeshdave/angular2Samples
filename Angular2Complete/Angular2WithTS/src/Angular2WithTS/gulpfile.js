@@ -1,10 +1,10 @@
 ﻿/// <binding AfterBuild='copy' Clean='clean' />
 
 var gulp = require("gulp"),
-  rimraf = require("gulp-rimraf"),
-  typescript= require("gulp-tsc"),
-  fs = require("fs");
-var stripDebug = require('gulp-strip-debug');
+    rimraf = require("gulp-rimraf"),
+    typescript = require("gulp-tsc"),
+    fs = require("fs");
+var tsd = require('gulp-tsd');
 
 eval("var project = " + fs.readFileSync("./project.json"));
 
@@ -15,37 +15,31 @@ var paths = {
   mainapp:"./app/"
 };
 
-gulp.task('default', function () {
-    return gulp.src('src/app.js')
-        .pipe(stripDebug())
-        .pipe(gulp.dest('dist'));
+
+
+gulp.task('tsd', function (callback) {
+    tsd({
+        command: 'reinstall',
+        config: './tsd.json'
+    }, callback);
 });
 
 gulp.task("clean", function () {
     gulp.src(paths.lib).pipe(rimraf());
     gulp.src(paths.publicApp).pipe(rimraf());
+    gulp.src(paths.mainapp+"/**/*.{js,d.ts}").pipe(rimraf());
+
 });
 
 gulp.task("compile:typescript", function () {
-    var a= gulp.src([paths.mainapp + "**/*.{js}"])
+    return gulp.src(["app/**/*.ts"])
         .pipe(typescript({
             module : "amd",
             emitError : true,
             sourceMap : true,
-            declaration : true,
             target : "ES5"
         }))
-        .pipe(gulp.dest(paths.publicApp));
-
-    a.on('data', function (chunk) {
-        var contents = chunk.contents.toString().trim();
-        var bufLength = process.stdout.columns;
-        var hr = '\n\n' + Array(bufLength).join("_") + '\n\n'
-        if (contents.length > 1) {
-            process.stdout.write(chunk.path + '\n' + contents + '\n');
-            process.stdout.write(chunk.path + hr);
-        }
-    });
+        .pipe(gulp.dest(paths.mainapp));
 });
 
 gulp.task("copy", ["clean", "compile:typescript"], function () {
