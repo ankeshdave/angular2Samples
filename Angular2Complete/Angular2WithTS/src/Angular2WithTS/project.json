@@ -25,8 +25,7 @@
     "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta5-11337",
     "Microsoft.Framework.ConfigurationModel.UserSecrets": "1.0.0-beta5-10298",
     "Microsoft.Framework.Logging": "1.0.0-beta6-11503",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta6-11503",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta4"
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta6-11503"
   },
 
   "commands": {

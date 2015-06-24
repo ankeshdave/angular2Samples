@@ -1,7 +1,5 @@
 ﻿using Angular2WithTS.Models;
 
-using Microsoft.AspNet.Authentication.Facebook;
-using Microsoft.AspNet.Authentication.MicrosoftAccount;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Diagnostics.Entity;
@@ -20,13 +18,13 @@ namespace Angular2WithTS
     public class Startup
     {
         /// <summary>
-        /// Staratup Function
+        /// Startup Function
         /// </summary>
         /// <param name="env"></param>
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, Microsoft.Framework.Runtime.IApplicationEnvironment applicationEnvironment)
         {
             // Setup configuration sources.
-            var configuration = new Configuration()
+            var configuration = new Configuration(applicationEnvironment.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
@@ -46,7 +44,8 @@ namespace Angular2WithTS
         public void ConfigureServices(IServiceCollection services)
         {
             // Add Application settings to the services container.
-            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+
+            services.Configure<AppSettings>(GetServices);
 
             // Add EF services to the services container.
             services.AddEntityFramework()
@@ -62,17 +61,17 @@ namespace Angular2WithTS
             // Configure the options for the authentication middleware.
             // You can add options for Google, Twitter and other middleware as shown below.
             // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            services.Configure<FacebookAuthenticationOptions>(options =>
-            {
-                options.AppId = Configuration["Authentication:Facebook:AppId"];
-                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            });
+            //services.Configure<FacebookAuthenticationOptions>(options =>
+            //{
+            //    options.AppId = Configuration["Authentication:Facebook:AppId"];
+            //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //});
 
-            services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
-            {
-                options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
-                options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
-            });
+            //services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
+            //{
+            //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
+            //    options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
+            //});
 
             // Add MVC services to the services container.
             services.AddMvc();
@@ -80,6 +79,11 @@ namespace Angular2WithTS
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
+        }
+
+        private void GetServices(AppSettings settings)
+        {
+            Configuration.GetSubKey("AppSettings");
         }
 
         // Configure is called after ConfigureServices is called.
@@ -93,8 +97,8 @@ namespace Angular2WithTS
             // Add the following to the request pipeline only in development environment.
             if (env.IsEnvironment("Development"))
             {
-                app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                
+                app.UseErrorPage(new ErrorPageOptions());
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else
