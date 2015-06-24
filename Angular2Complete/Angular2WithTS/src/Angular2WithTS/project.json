@@ -25,13 +25,17 @@
     "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta5-11337",
     "Microsoft.Framework.ConfigurationModel.UserSecrets": "1.0.0-beta5-10298",
     "Microsoft.Framework.Logging": "1.0.0-beta6-11503",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta6-11503"
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta6-11503",
+    "Kestrel": "1.0.0-beta6-11888",
+     "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta6-11880"
   },
 
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
     "gen": "Microsoft.Framework.CodeGeneration",
-    "ef": "EntityFramework.Commands"
+    "ef": "EntityFramework.Commands",
+    "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"           
+
   },
 
   "frameworks": {

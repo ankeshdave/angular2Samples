@@ -42,6 +42,10 @@ gulp.task("compile:typescript", function () {
         .pipe(gulp.dest(paths.mainapp));
 });
 
+gulp.task('watch',function () {
+    gulp.watch('app/**/*.ts', ['copy']);
+});
+
 gulp.task("copy", ["clean", "compile:typescript"], function () {
     var bower = {
         "bootstrap" : "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
