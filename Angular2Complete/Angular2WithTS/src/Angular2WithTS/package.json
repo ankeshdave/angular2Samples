@@ -1,6 +1,9 @@
 {
   "name": "ASP.NET",
   "version": "0.0.0",
+  "dependencies": {
+    "angular2" : "2.0.0-alpha.28"
+  },
   "devDependencies": {
     "gulp": "3.9.0",
     "gulp-clean": "0.3.1",
