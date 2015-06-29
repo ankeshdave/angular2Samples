@@ -9,6 +9,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using Microsoft.Framework.Runtime;
 
 namespace Angular2WithTS
 {
@@ -21,7 +22,7 @@ namespace Angular2WithTS
         /// Startup Function
         /// </summary>
         /// <param name="env"></param>
-        public Startup(IHostingEnvironment env, Microsoft.Framework.Runtime.IApplicationEnvironment applicationEnvironment)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment applicationEnvironment)
         {
             // Setup configuration sources.
             var configuration = new Configuration(applicationEnvironment.ApplicationBasePath)

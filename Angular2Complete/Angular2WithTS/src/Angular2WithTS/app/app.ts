@@ -1,7 +1,7 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
-import {Component, View, bootstrap} from 'angular2/angular2';
-import {NgFor} from "angular2/angular2";
-import Component1 = require("app/components/component");
+import {Component, View, bootstrap,coreDirectives} from 'angular2/angular2';
+import Component1 = require("components/child");
+import LoginComponent = require("components/loginComponent/login");
 
 @Component({
     selector : "my-app"
@@ -9,15 +9,15 @@ import Component1 = require("app/components/component");
 
 @View({
     templateUrl: "./app/app.html",
-    directives:[NgFor,Component1.Child]
+    directives:[Component1.Child,coreDirectives,LoginComponent]
 })
+
 
 class App {
     name: string;
-    titles : Array<String>;
+    titles: Array<String> = ["Title1", "Title2"];
     constructor(){
         this.name = "Ankesh";
-        this.titles = ["Title1", "Title2"];
     }
 }
 

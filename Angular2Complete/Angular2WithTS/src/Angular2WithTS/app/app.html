@@ -1,4 +1,4 @@
-﻿<h2>
-    {{name}}
-    <h1 *ng-for="#title in titles">{{title}}</h1>
-</h2>
+﻿<h2>{{name}}</h2>
+<child *ng-for="#t of titles" title="{{t}}"></child>
+
+<login-form></login-form>
